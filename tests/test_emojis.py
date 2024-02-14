@@ -241,10 +241,12 @@ def test_recommended_variation_15_sequences():
 def test_unicode_9_vs16():
     """Verify effect of VS-16 on unicode_version 9.0 and later"""
     phrase = (u"\u2640"        # FEMALE SIGN
+              u"\uFE0F"        # VARIATION SELECTOR-16
+              u"X"             # ASCII Letter 'X'
               u"\uFE0F")       # VARIATION SELECTOR-16
 
-    expect_length_each = (1, 0)
-    expect_length_phrase = 2
+    expect_length_each = (1, 0, 1, 0)
+    expect_length_phrase = 3
 
     # exercise,
     length_each = tuple(wcwidth.wcwidth(w_char, unicode_version='9.0') for w_char in phrase)
@@ -258,10 +260,12 @@ def test_unicode_9_vs16():
 def test_unicode_9_vs15():
     """Verify effect of VS-16 on unicode_version 9.0 and later"""
     phrase = (u"\U0001f4da"        # BOOKS
+              u"\uFE0E"            # VARIATION SELECTOR-15
+              u"X"                 # ASCII Letter 'X'
               u"\uFE0E")           # VARIATION SELECTOR-15
 
-    expect_length_each = (2, 0)
-    expect_length_phrase = 1
+    expect_length_each = (2, 0, 1, 0)
+    expect_length_phrase = 2
 
     # exercise,
     length_each = tuple(wcwidth.wcwidth(w_char, unicode_version='9.0') for w_char in phrase)
@@ -275,10 +279,12 @@ def test_unicode_9_vs15():
 def test_unicode_8_vs16():
     """Verify that VS-16 has no effect on unicode_version 8.0 and earlier"""
     phrase = (u"\u2640"        # FEMALE SIGN
+              u"\uFE0F"        # VARIATION SELECTOR-16
+              u"X"             # ASCII Letter 'X'
               u"\uFE0F")       # VARIATION SELECTOR-16
 
-    expect_length_each = (1, 0)
-    expect_length_phrase = 1
+    expect_length_each = (1, 0, 1, 0)
+    expect_length_phrase = 2
 
     # exercise,
     length_each = tuple(wcwidth.wcwidth(w_char, unicode_version='8.0') for w_char in phrase)
@@ -292,10 +298,12 @@ def test_unicode_8_vs16():
 def test_unicode_8_vs15():
     """Verify that VS-15 has no effect on unicode_version 8.0 and earlier"""
     phrase = (u"\U0001f4da"        # BOOKS
+              u"\uFE0E"            # VARIATION SELECTOR-15
+              u"X"                 # ASCII Letter 'X'
               u"\uFE0E")           # VARIATION SELECTOR-15
 
-    expect_length_each = (1, 0)
-    expect_length_phrase = 1
+    expect_length_each = (1, 0, 1, 0)
+    expect_length_phrase = 2
 
     # exercise,
     length_each = tuple(wcwidth.wcwidth(w_char, unicode_version='8.0') for w_char in phrase)
